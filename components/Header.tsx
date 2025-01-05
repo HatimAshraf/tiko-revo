@@ -1,7 +1,7 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '@/images/logo-bw.png';
+import logo from '@/images/Tiko-Revo-oran.png ';
 import SearchBar from './SearchBar';
 
 function Header() {

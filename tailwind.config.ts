@@ -10,6 +10,10 @@ export default {
   theme: {
   	extend: {
   		colors: {
+			oran:{
+				0:"#fe563c"
+
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
