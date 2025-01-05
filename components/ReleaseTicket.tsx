@@ -17,7 +17,8 @@ export default function ReleaseTicket({
   const releaseTicket = useMutation(api.waitingList.releaseTicket);
 
   const handleRelease = async () => {
-    if (!confirm('Are you sure you want to release your ticket offer?')) return;
+    if (!confirm('Are you sure, you want to release your ticket offer?'))
+      return;
 
     try {
       setIsReleasing(true);
