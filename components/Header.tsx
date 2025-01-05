@@ -42,7 +42,7 @@ function Header() {
           <SignedIn>
             <div className='flex items-center gap-3'>
               <Link href='/seller'>
-                <button className='bg-black text-white px-3 py-1.5 text-sm rounded-lg hover:bg-black transition'>
+                <button className='bg-oran-0 text-white px-3 py-1.5 text-sm rounded-lg hover:bg-black transition'>
                   Sell Tickets
                 </button>
               </Link>

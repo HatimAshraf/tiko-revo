@@ -1,5 +1,5 @@
 import { query, mutation } from "./_generated/server";
-import { ConvexError, v } from "convex/values";
+import { ConvexError , v } from "convex/values";
 import { DURATIONS, WAITING_LIST_STATUS, TICKET_STATUS } from "./constants";
 
 
@@ -51,5 +51,15 @@ export const getEventAvailability = query({
       .then(
         (entries) => entries.filter((e) => (e.offerExpiresAt ?? 0) > now).length
       );
+      const availableSpots = event.totalTickets - (purchasedCount + activeOffers);
+
+    return {
+      available: availableSpots > 0,
+      availableSpots,
+      totalTickets: event.totalTickets,
+      purchasedCount,
+      activeOffers,
+    };
+
     },
   })
