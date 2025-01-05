@@ -1,6 +1,6 @@
 'use client';
 
-// import { createStripeCheckoutSession } from '@/app/actions/createStripeCheckoutSession';
+import { createStripeCheckoutSession } from '@/app/actions/createStripeCheckoutSession';
 import { Id } from '@/convex/_generated/dataModel';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -56,9 +56,9 @@ export default function PurchaseTicket({ eventId }: { eventId: Id<'events'> }) {
 
     try {
       setIsLoading(true);
-      // const { sessionUrl } = await createStripeCheckoutSession({
-      //   eventId,
-      // });
+      const { sessionUrl } = await createStripeCheckoutSession({
+        eventId,
+      });
 
       if (sessionUrl) {
         router.push(sessionUrl);
