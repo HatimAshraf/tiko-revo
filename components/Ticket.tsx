@@ -16,11 +16,18 @@ import { useStorageUrl } from '@/lib/utils';
 import Image from 'next/image';
 
 export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
-  const ticket = useQuery(api.tickets.getTicketWithDetails, { ticketId });
+  const ticket = useQuery(
+    api.tickets.getTicketWithDetails,
+    ticketId ? { ticketId } : 'skip'
+  );
   const user = useQuery(api.users.getUserById, {
-    userId: ticket?.userId ?? '',
+    userId: ticket?.userId ?? 'skip',
   });
   const imageUrl = useStorageUrl(ticket?.event?.imageStorageId);
+
+  if (ticket === undefined) {
+    return <Spinner />;
+  }
 
   if (!ticket || !ticket.event || !user) {
     return <Spinner />;
