@@ -52,7 +52,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
           </div>
         )}
         <div
-          className={`px-6 py-4 ${imageUrl ? 'absolute bottom-0 left-0 right-0' : ticket.event.is_cancelled ? 'bg-red-600' : 'bg-blue-600'} `}
+          className={`px-6 py-4 ${imageUrl ? 'absolute bottom-0 left-0 right-0' : ticket.event.is_cancelled ? 'bg-red-600' : 'bg-oran-0'} `}
         >
           <h2
             className={`text-2xl font-bold ${imageUrl || !imageUrl ? 'text-white' : 'text-black'}`}
@@ -72,7 +72,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
           <div className='space-y-4'>
             <div className='flex items-center text-gray-600'>
               <CalendarDays
-                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-blue-600'}`}
+                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-oran-0'}`}
               />
               <div>
                 <p className='text-sm text-gray-500'>Date</p>
@@ -84,7 +84,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
 
             <div className='flex items-center text-gray-600'>
               <MapPin
-                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-blue-600'}`}
+                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-oran-0'}`}
               />
               <div>
                 <p className='text-sm text-gray-500'>Location</p>
@@ -94,7 +94,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
 
             <div className='flex items-center text-gray-600'>
               <User
-                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-blue-600'}`}
+                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-oran-0'}`}
               />
               <div>
                 <p className='text-sm text-gray-500'>Ticket Holder</p>
@@ -105,7 +105,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
 
             <div className='flex items-center text-gray-600 break-all'>
               <IdCard
-                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-blue-600'}`}
+                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-oran-0'}`}
               />
               <div>
                 <p className='text-sm text-gray-500'>Ticket Holder ID</p>
@@ -115,11 +115,11 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
 
             <div className='flex items-center text-gray-600'>
               <TicketIcon
-                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-blue-600'}`}
+                className={`w-5 h-5 mr-3 ${ticket.event.is_cancelled ? 'text-red-600' : 'text-oran-0'}`}
               />
               <div>
                 <p className='text-sm text-gray-500'>Ticket Price</p>
-                <p className='font-medium'>£{ticket.event.price.toFixed(2)}</p>
+                <p className='font-medium'>€{ticket.event.price.toFixed(2)}</p>
               </div>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<'tickets'> }) {
           Purchase Date: {new Date(ticket.purchasedAt).toLocaleString()}
         </span>
         <span
-          className={`text-sm font-medium ${ticket.event.is_cancelled ? 'text-red-600' : 'text-blue-600'}`}
+          className={`text-sm font-medium ${ticket.event.is_cancelled ? 'text-red-600' : 'text-oran-0'}`}
         >
           {ticket.event.is_cancelled ? 'Cancelled' : 'Valid Ticket'}
         </span>

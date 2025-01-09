@@ -8,7 +8,8 @@ import { redirect, useParams } from 'next/navigation';
 import Ticket from '@/components/Ticket';
 import Link from 'next/link';
 import { ArrowLeft, Download, Share2 } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { toPng } from 'html-to-image';
 
 export default function TicketPage() {
   const params = useParams();
@@ -16,6 +17,8 @@ export default function TicketPage() {
   const ticket = useQuery(api.tickets.getTicketWithDetails, {
     ticketId: params.id as Id<'tickets'>,
   });
+
+  const ticketRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!user) {
@@ -30,6 +33,20 @@ export default function TicketPage() {
       redirect('/tickets');
     }
   }, [user, ticket]);
+
+  const handleSaveTicket = async () => {
+    if (!ticketRef.current || !ticket || !ticket.event) return;
+
+    try {
+      const dataUrl = await toPng(ticketRef.current);
+      const link = document.createElement('a');
+      link.download = `ticket-${ticket.event.name}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (error) {
+      console.error('Error saving ticket:', error);
+    }
+  };
 
   if (!ticket || !ticket.event) {
     return null;
@@ -49,7 +66,10 @@ export default function TicketPage() {
               Back to My Tickets
             </Link>
             <div className='flex items-center gap-4'>
-              <button className='flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100'>
+              <button
+                onClick={handleSaveTicket}
+                className='flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-100'
+              >
                 <Download className='w-4 h-4' />
                 <span className='text-sm'>Save</span>
               </button>
@@ -95,7 +115,9 @@ export default function TicketPage() {
         </div>
 
         {/* Ticket Component */}
-        <Ticket ticketId={ticket._id} />
+        <div ref={ticketRef}>
+          <Ticket ticketId={ticket._id} />
+        </div>
 
         {/* Additional Information */}
         <div
@@ -107,19 +129,19 @@ export default function TicketPage() {
         >
           <h3
             className={`text-sm font-medium ${
-              ticket.event.is_cancelled ? 'text-red-900' : 'text-blue-900'
+              ticket.event.is_cancelled ? 'text-red-900' : 'text-oran-0'
             }`}
           >
             Need Help?
           </h3>
           <p
             className={`mt-1 text-sm ${
-              ticket.event.is_cancelled ? 'text-red-700' : 'text-blue-700'
+              ticket.event.is_cancelled ? 'text-red-700' : 'text-oran-0'
             }`}
           >
             {ticket.event.is_cancelled
-              ? 'For questions about refunds or cancellations, please contact our support team at team@papareact-tickr.com'
-              : 'If you have any issues with your ticket, please contact our support team at team@papareact-tickr.com'}
+              ? 'For questions about refunds or cancellations, please contact our support team at team@tiko-revo.com'
+              : 'If you have any issues with your ticket, please contact our support team at  team@tiko-revo.com'}
           </p>
         </div>
       </div>

@@ -104,10 +104,10 @@ export default function TicketCard({ ticketId }: { ticketId: Id<'tickets'> }) {
                 ? 'text-red-600'
                 : isPastEvent
                   ? 'text-gray-600'
-                  : 'text-blue-600'
+                  : 'text-oran-0'
             }`}
           >
-            £{ticket.event.price.toFixed(2)}
+            €{ticket.event.price.toFixed(2)}
           </span>
           <span className='text-gray-600 flex items-center'>
             View Ticket <ArrowRight className='w-4 h-4 ml-1' />
